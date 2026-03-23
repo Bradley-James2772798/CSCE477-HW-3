@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    h2 {
+        color: white
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background: maroon;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: maroon;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: maroon;
+    }
+
+    .error {
+      color: maroon;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Login</h2>
+
+  <form onsubmit="return validateLogin()">
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    
+    <div id="errorMsg" class="error"></div>
+
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<script>
+function validateLogin() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorMsg = document.getElementById("errorMsg");
+
+  errorMsg.textContent = "";
+
+  // Checks if fields are empty
+  if (email === "" || password === "") {
+    errorMsg.textContent = "Error: Username and Password fields are required.";
+    return false;
+  }
+
+  // Check if email is valif (constains @ symbol)
+  if (!email.includes("@")) {
+    errorMsg.textContent = "Error: Please enter a valid email address.";
+    return false;
+  }
+
+  // Checks password length
+  if (password.length < 8) {
+    errorMsg.textContent = "Error: Password must be at least 8 characters long.";
+    return false;
+  }
+
+  // User login information is satisfactory
+  alert("Login Successful!");
+  return true;
+}
+</script>
+
+</body>
+</html>
